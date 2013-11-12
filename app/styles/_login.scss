@@ -1,0 +1,94 @@
+$FOCUS_COLOR: 220;
+
+#login{
+  margin-top: 100px;
+
+  height: 100%;
+  @include transition( opacity 1s );
+
+  &.login-done {
+    opacity: 0;
+    @include transition( all 1s );
+  }
+
+  #login-container{
+    font-size: 12px;
+    width: 400px;
+    margin: auto;
+    background: #ffffff;
+    padding: 40px 30px;
+
+    color: $DEFAULT_COLOR;
+    form{
+      p{
+        margin-bottom: 20px;
+      }
+
+      p.submit {
+        margin-top: 30px;
+        width: 70px;
+        margin: auto;
+      }
+
+      input{
+        width: calc(100% - 65px);
+
+        font-size: 12px;
+        color: $DEFAULT_COLOR;
+
+        border: 1px solid $DEFAULT_COLOR;
+        border-radius: 0;
+
+
+
+        -webkit-appearance: none;
+
+        &:focus{
+          outline-color: rgb($FOCUS_COLOR, $FOCUS_COLOR, $FOCUS_COLOR);
+        }
+      }
+
+      input[type=submit]{
+        background: #ffffff;
+        padding: 5px 0;
+        width: 70px;
+        margin: auto;
+        text-align: center;
+        color: $DEFAULT_COLOR;
+
+
+      }
+
+
+
+      input[type=submit]{
+        &:hover, &:active, &:focus, &:visited{
+          cursor     : pointer;
+          background : $DEFAULT_HOVER_BG_COLOR;
+          border-color     : $DEFAULT_HOVER_BG_COLOR ;
+        }
+
+        &:hover{
+          @include transition( all .4s);
+        }
+
+      }
+
+
+
+
+
+      .name {
+        margin-right: 19px+10px;
+      }
+
+      .pwd {
+        margin-right: 10px;
+      }
+
+
+
+    }
+
+  }
+}

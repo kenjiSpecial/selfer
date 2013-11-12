@@ -1,0 +1,39 @@
+@import "compass/reset";
+@import "compass/css3";
+
+@import "constans";
+
+
+
+@import "nav";
+
+@import "login";
+@import "loading";
+@import "home";
+
+@import "font";
+@import "loader";
+
+body{
+  min-height: 400px;
+  font-family: 'Lato', sans-serif;
+  background: $BG_COLOR;
+}
+
+*,
+*:after,
+*::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#main-container{
+  &.init{
+    opacity: 0;
+    @include transition(opacity .6s);
+  }
+
+  @include transition(opacity .6s);
+  opacity : 1;
+}

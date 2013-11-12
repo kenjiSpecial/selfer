@@ -1,0 +1,16 @@
+#loading-text{
+  font-size: 14px;
+  color: $NAV_BG_COLOR;
+  margin-top: 60px;
+
+  &.invisible{
+    opacity: 0;
+    @include transition(all .4s);
+  }
+
+  &.visible{
+    opacity: 1;
+    @include transition(all .4s);
+  }
+
+}

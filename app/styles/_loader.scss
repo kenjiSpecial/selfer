@@ -1,0 +1,190 @@
+/*********************
+Animation
+*********************/
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content
+  }
+  @-moz-keyframes #{$name} {
+    @content
+  }
+  @-ms-keyframes #{$name} {
+    @content
+  }
+  @-o-keyframes #{$name} {
+    @content
+  }
+  @keyframes #{$name} {
+    @content
+  }
+}
+
+@mixin animation($value) {
+  -webkit-animation: $value;
+  -moz-animation: $value;
+  -ms-animation: $value;
+  -o-animation: $value;
+  animation: $value;
+}
+
+#loader {
+  display: none;
+
+  &.load {
+    display: block;
+  }
+
+  &.login {
+    display: block;
+    .clock {
+      border-color: $NAV_BG_COLOR;
+      top: calc(50% - 130px);
+
+
+      .hours {
+        @include transform(rotate(315deg));
+
+        &:before {
+          background: $NAV_BG_COLOR;
+        }
+      }
+
+      .minutes {
+        @include transform(rotate(270deg));
+
+        &:before {
+          background: $NAV_BG_COLOR;
+
+        }
+      }
+    }
+  }
+
+  &.loading {
+    display: block;
+    .clock {
+      border-color: $NAV_BG_COLOR;
+
+      .hours {
+        &:before {
+          background: $NAV_BG_COLOR;
+        }
+      }
+
+      .minutes {
+        &:before {
+          background: $NAV_BG_COLOR;
+        }
+      }
+    }
+
+    &.login-start {
+      .clock {
+        opacity: 0;
+        @include transition(all .4s);
+
+      }
+    }
+  }
+
+  &.slow {
+    .clock {
+      .hours {
+        @include animation(you-spin-me-round-round-baby-right-round 36s linear 0s infinite);
+        // &:before {
+        @include transition(all .4s)
+        // }
+      }
+      .minutes {
+        @include animation(you-spin-me-round-round-baby-right-round 3s linear 0s infinite);
+        // &:before {
+        @include transition(all .4s)
+        // }
+      }
+
+    }
+  }
+
+  &.fast {
+    .clock {
+      .hours {
+        @include animation(you-spin-me-round-round-baby-right-round 6s linear 0s infinite);
+      }
+      .minutes {
+        @include animation(you-spin-me-round-round-baby-right-round 0.5s linear 0s infinite);
+      }
+    }
+  }
+
+  .clock {
+    z-index: 100;
+
+    @include transition(top 1s .5s);
+
+    &.loadDone {
+      opacity: 0;
+      @include transition(all .4s);
+    }
+
+    @include box-sizing(content-box);
+
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    border: solid 2px #ffffff;
+    left: 50%;
+    margin-left: -25px;
+    top: 50%;
+    margin-top: -25px;
+
+    .hours {
+      @include box-sizing(content-box);
+      @include transition(all .3s);
+      position: absolute;
+      width: 50px;
+      height: 3px;
+      // background: red;
+      top: 23.5px;
+
+      &:before {
+        content: "";
+        height: 3px;
+        width: 20px;
+        position: absolute;
+        right: 7px;
+        background: #ffffff;
+
+      }
+    }
+    .minutes {
+      @include box-sizing(content-box);
+      @include transition(all .3s);
+
+      position: absolute;
+      width: 50px;
+      height: 3px;
+      // background: blue;
+      top: 23.5px;
+      &:before {
+        content: "";
+        height: 3px;
+        width: 24px;
+        position: absolute;
+        right: 3px;
+        background: #ffffff;
+
+      }
+
+    }
+  }
+}
+
+@-webkit-keyframes you-spin-me-round-round-baby-right-round {
+  0% {
+    @include transform(rotate(0deg));
+  }
+  100% {
+    @include transform(rotate(360deg));
+  }
+}
