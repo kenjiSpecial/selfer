@@ -4,4 +4,49 @@
 
     margin: auto;
 
+    /** timer **/
+
+    div#timer{
+      &.inactive{
+        display: none;
+      }
+
+    }
+
+    /** timer **/
+
+    #timeline{
+
+      .wrapper{
+        height: 100%;
+        @include display-box;
+        @include box-orient(horizontal);
+        @include box-align(stretch);
+        @include box-direction(reverse);
+
+        #main-project{
+          background: #ffff00;
+          @include box-flex(12);
+          height: 100%;
+        }
+
+        .line{
+          height: 100%;
+
+          background: #ff0000;
+          @include box-flex(1);
+        }
+
+        #sub-project{
+          height: 100%;
+
+          background: #0000ff;
+          @include box-flex(12);
+        }
+
+      }
+
+    }
+
+
   }

@@ -20,7 +20,14 @@ define([
         },
 
         loginStart: function( ) {
+            var self = this;
             this.$el.addClass("login-start");
+
+            setTimeout(function(){
+                self.$el.removeClass("login-start");
+                self.$el.removeClass("slow").addClass("fast");
+                self.$el.removeClass("loading");
+            }, 1000);
         },
 
 

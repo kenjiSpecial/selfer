@@ -54,7 +54,7 @@ define([
                     self.loadingFinish();
                 }
 
-            }, 5000);
+            }, 2000);
 
             // start to load the data.
             projectCollection.fetchStart();
@@ -122,10 +122,10 @@ define([
 
 
         loadingFinish : function(){
-            console.log("loadingFinish");
 
             this.$el.find("#loading-text").removeClass("visible").addClass("invisible");
 
+            myEvent.trigger("loadingFinish");
         }
 
 
