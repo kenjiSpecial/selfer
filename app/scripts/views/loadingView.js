@@ -7,15 +7,16 @@ define([
 
     'views/loaderView',
 
-    'collections/imageDataCollection',
+    'models/appData',
 
+    'collections/imageDataCollection',
     'collections/projectCollection',
 
     'helpers/events',
 
     'templates',
     'preloadJS'
-], function ($, _, Backbone, loaderView, imageData, projectCollection, myEvent, JST) {
+], function ($, _, Backbone, loaderView, appData, imageData, projectCollection, myEvent, JST) {
     'use strict';
 
     var LoadingView = Backbone.View.extend({
@@ -124,7 +125,7 @@ define([
         loadingFinish : function(){
 
             this.$el.find("#loading-text").removeClass("visible").addClass("invisible");
-
+            appData.set("load", true);
             myEvent.trigger("loadingFinish");
         }
 

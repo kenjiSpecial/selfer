@@ -1,3 +1,4 @@
+
 <section id="home-page">
     <div id="timer" class="inactive">
         ### timer ###
@@ -6,11 +7,65 @@
     <div id="timeline">
         <div class="wrapper">
 
-
+            <!-- sub project -->
             <div id="sub-project" class="project">
-                <div class="currentWork work">
+
+                <!-- current work-->
+
+                <% if(doingSubData){
+                    var timelineThumbnail = doingSubData.timelineThumbnail;
+
+                    if( timelineThumbnail == "null"){
+                        timelineThumbnail = "timeline-null2.jpg"
+                    }
+                %>
+                <div class="currentWork work work#<%= doingSubData.objectId %>">
+                    <div class="pic">
+                        <img src="images/<%= timelineThumbnail %>" alt=""/>
+                    </div>
+
+                    <div class="description">
+                        <div class="title"><%= doingSubData.name %></div>
+                        <div class="button-list">
+                            <a class="button detail-button" href="">DETAIL</a>
+                            <a class="button start-button" href="">START</a>
+                        </div>
+                    </div>
                 </div>
+
+                <%}%>
+
+                <!-- current work-->
+
+                <!-- past works-->
+                <% if( didSubData.length > 0 ){
+                    for(var i in didSubData){
+                        var timelineThumbnail = didSubData[i].timelineThumbnail;
+
+                        if( timelineThumbnail == "null"){
+                            timelineThumbnail = "timeline-null2.jpg"
+                        }
+                %>
+
+                <div class="pastWork work work#<%= didSubData[i].objectId %>">
+                    <div class="pic">
+                        <img src="images/<%= timelineThumbnail %>" alt=""/>
+                    </div>
+
+                    <div class="description">
+                        <div class="title"><%= didSubData[i].name %></div>
+                        <div class="button-list">
+                            <a class="button detail-button" href="">DETAIL</a>
+                        </div>
+                    </div>
+                </div>
+
+                <% }} %>
+                <!-- past works-->
+
             </div>
+
+
 
             <div class="line-graphic">
                 <div class="main-line"></div>
@@ -19,23 +74,58 @@
 
             <div id="main-project" class="project">
 
-                <div class="currentWork work">
+                <!-- current work -->
+                <% if(doingMainData){
+                    var timelineThumbnail = doingMainData.timelineThumbnail;
+
+                    if( timelineThumbnail == "null"){
+                        timelineThumbnail = "timeline-null2.jpg"
+                    }
+                %>
+                <div class="currentWork work work#<%= doingMainData.objectId %>">
                     <div class="pic">
-                        <img src="images/case01-timeline.jpg" alt=""/>
+                        <img src="images/<%= timelineThumbnail %>" alt=""/>
                     </div>
 
                     <div class="description">
-                        <div class="title">website for ios app project</div>
+                        <div class="title"><%= doingMainData.name %></div>
                         <div class="button-list">
                             <a class="button detail-button" href="">DETAIL</a>
                             <a class="button start-button" href="">START</a>
-
                         </div>
                     </div>
-
-
-
                 </div>
+
+                <% }  %>
+                <!-- current work -->
+
+                <!-- past work -->
+                <%
+                    if( didMainData.length > 0 ){
+                      for(var i in didMainData){
+                        var timelineThumbnail = didMainData[i].timelineThumbnail;
+
+                        if( timelineThumbnail == "null"){
+                            timelineThumbnail = "timeline-null2.jpg"
+                        }
+                %>
+
+                <div class="pastWork work work#<%= didMainData[i].objectId %>">
+                    <div class="pic">
+                        <img src="images/<%= timelineThumbnail %>" alt=""/>
+                    </div>
+
+                    <div class="description">
+                        <div class="title"><%= didMainData[i].name %></div>
+                        <div class="button-list">
+                            <a class="button detail-button" href="">DETAIL</a>
+                        </div>
+                    </div>
+                </div>
+
+                <% }} %>
+                <!-- past work -->
+
 
             </div>
 

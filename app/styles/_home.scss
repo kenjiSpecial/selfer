@@ -1,4 +1,3 @@
-
   #home-page{
     width: $CONTAINER_WIDTH;
 
@@ -33,17 +32,25 @@
             width: $WORK_WIDTH;
             height: $WORK_HEIGHT;
 
+            &.work-mouse-enter{
+              .description {
+                @include create-transform( $perspective: 1000, $rotate-x: 0, $origin-y: 0 );
+              }
+            }
+
             .pic{
               overflow: hidden;
               margin: 10px;
               width: $WORK_IMG_WIDTH;
               height: $WORK_IMG_HEIGHT;
             }
-          }
 
-          .description {
-            padding: 0 10px 10px;
-            background: $WORK_BG_COLOR;
+            .description {
+              @include create-transform( $perspective: 1000, $rotate-x: -90deg, $origin-y: 0 );
+              @include transition(all 0.3s);
+
+              padding: 0 10px 10px;
+              background: $WORK_BG_COLOR;
 
               .title{
                 font-size: 18px;
@@ -53,9 +60,10 @@
 
               .button-list{
                 overflow: hidden;
-                a.button {
-                  @include transition(all 0.6s);
-                  
+
+                .button {
+                  @include transition(all 0.3s);
+
                   display: block;
                   float: right;
                   font-size: 12px;
@@ -63,6 +71,13 @@
                   text-decoration: none;
                   border: $BUTTON_DEF_COLOR solid 1px;
                   padding: 5px 10px;
+
+                  /*&:after{
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    background: #ffff00;
+                  }*/
 
 
                   &.start-button{
@@ -72,13 +87,29 @@
                   &:hover{
                     background: $DEFAULT_HOVER_BG_COLOR;
                     border-color: $DEFAULT_HOVER_BG_COLOR;
+
+                    /*&:after{
+                      content: "";
+                      display: block;
+                      position: absolute;
+                      background: #ffff00;
+                      width  : 100%;
+                      height : 100%;
+                    }*/
+
                   }
 
                 }
 
               }
-            
+
+            }
+
+
           }
+
+
+
         }
 
         #main-project{
