@@ -31,7 +31,7 @@ module.exports = function (grunt) {
         watch: {
             options: {
                 nospawn: true,
-                livereload: true
+                livereload: false
             },
             coffee: {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
@@ -47,7 +47,7 @@ module.exports = function (grunt) {
             },
             livereload: {
                 options: {
-                    livereload: LIVERELOAD_PORT
+                    // livereload: LIVERELOAD_PORT
                 },
                 files: [
                     '<%= yeoman.app %>/*.html',

@@ -19,7 +19,7 @@ define([
 ], function ( $, Backbone, NavView, HomeView, ListView, RelationshipView, CreateView, LoginView, loadingView ) {
     'use strict';
 
-    var currentView;
+    var currentView, currentViewState;
     var homeView     = new HomeView();
     var listView     = new ListView();
     var relationView = new CreateView();
@@ -41,22 +41,30 @@ define([
         },
 
         defaultAction : function(){
-            console.log("defAction");
+            if(currentViewState == "main") currentView.remove();
+            currentView = homeView;
+            currentViewState = "main";
             homeView.render();
         },
 
         listAction : function(){
-            console.log("listAction");
+            if(currentViewState == "main") currentView.remove();
+            currentView = listView;
+            currentViewState = "main";
             listView.render();
         },
 
         relationshipAction : function(){
-            console.log("relationshipAction");
+            if(currentViewState == "main") currentView.remove();
+            currentView = relationView;
+            currentViewState = "main";
             relationView.render();
         },
 
         createAction : function(){
-            console.log("createAction");
+            if(currentViewState == "main") currentView.remove();
+            currentView = createView;
+            currentViewState = "main";
             createView.render();
         },
 
@@ -65,10 +73,15 @@ define([
         },
 
         loginAction : function(){
+            currentViewState = "main";
+            currentView = loadingView;
             loginView.render();
         },
 
         loadingAction :function(){
+            if(currentViewState == "main") currentView.remove();
+            currentViewState = "sub";
+            currentView = loadingView;
             loadingView.render();
         }
 

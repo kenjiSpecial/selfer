@@ -24,24 +24,100 @@
         @include box-align(stretch);
         @include box-direction(reverse);
 
-        #main-project{
-          background: #ffff00;
-          @include box-flex(12);
+        .project {
           height: 100%;
+
+          .work{
+            position: absolute;
+            background: $WORK_BG_COLOR;
+            width: $WORK_WIDTH;
+            height: $WORK_HEIGHT;
+
+            .pic{
+              overflow: hidden;
+              margin: 10px;
+              width: $WORK_IMG_WIDTH;
+              height: $WORK_IMG_HEIGHT;
+            }
+          }
+
+          .description {
+            padding: 0 10px 10px;
+            background: $WORK_BG_COLOR;
+
+              .title{
+                font-size: 18px;
+                color: $DEFAULT_COLOR;
+                margin-bottom: 15px;
+              }
+
+              .button-list{
+                overflow: hidden;
+                a.button {
+                  @include transition(all 0.6s);
+                  
+                  display: block;
+                  float: right;
+                  font-size: 12px;
+                  color: $DEFAULT_COLOR;
+                  text-decoration: none;
+                  border: $BUTTON_DEF_COLOR solid 1px;
+                  padding: 5px 10px;
+
+
+                  &.start-button{
+                    margin-right: 12px;
+                  }
+
+                  &:hover{
+                    background: $DEFAULT_HOVER_BG_COLOR;
+                    border-color: $DEFAULT_HOVER_BG_COLOR;
+                  }
+
+                }
+
+              }
+            
+          }
         }
 
-        .line{
-          height: 100%;
-
-          background: #ff0000;
-          @include box-flex(1);
+        #main-project{
+         // background: rgba( 100, 100, 100, 0.3);
+          @include box-flex(7);
         }
 
         #sub-project{
-          height: 100%;
+          //background: rgba(255, 0, 0, 0.3);
+          @include box-flex(7);
+        }
 
-          background: #0000ff;
-          @include box-flex(12);
+
+        .line-graphic{
+          position: relative;
+
+          height: 100%;
+          @include box-flex(1);
+
+          .main-line{
+            background: $VISUAL_COLOR;
+
+            width  : 2px;
+            height : 100%;
+            margin: auto;
+          }
+
+          .circle{
+            position: absolute;
+            top: -12px;
+            left: calc((100% - 24px)/2);
+            width: 24px;
+            height: 24px;
+            background: $VISUAL_COLOR;
+            border: $BG_COLOR solid 8px;
+            border-radius: 12px;
+          }
+
+
         }
 
       }
