@@ -115,11 +115,13 @@
         #main-project{
          // background: rgba( 100, 100, 100, 0.3);
           @include box-flex(7);
+          position: relative;
         }
 
         #sub-project{
           //background: rgba(255, 0, 0, 0.3);
           @include box-flex(7);
+          position: relative;
         }
 
 
@@ -137,7 +139,7 @@
             margin: auto;
           }
 
-          .circle{
+          .circle {
             position: absolute;
             top: -12px;
             left: calc((100% - 24px)/2);
@@ -146,6 +148,15 @@
             background: $VISUAL_COLOR;
             border: $BG_COLOR solid 8px;
             border-radius: 12px;
+          }
+
+          .rect {
+            position: absolute;
+            left: calc((100% - 24px)/2);
+            width: 24px;
+            height: 24px;
+            background: $VISUAL_COLOR;
+            border: $BG_COLOR solid 8px;
           }
 
 

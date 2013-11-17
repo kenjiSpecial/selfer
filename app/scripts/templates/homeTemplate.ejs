@@ -19,7 +19,7 @@
                         timelineThumbnail = "timeline-null2.jpg"
                     }
                 %>
-                <div class="currentWork work work#<%= doingSubData.objectId %>">
+                <div class="currentWork work" id = "work-<%= doingSubData.objectId %>">
                     <div class="pic">
                         <img src="images/<%= timelineThumbnail %>" alt=""/>
                     </div>
@@ -47,7 +47,7 @@
                         }
                 %>
 
-                <div class="pastWork work work#<%= didSubData[i].objectId %>">
+                <div class="pastWork work" id = "work-<%= didSubData[i].objectId %>">
                     <div class="pic">
                         <img src="images/<%= timelineThumbnail %>" alt=""/>
                     </div>
@@ -70,6 +70,14 @@
             <div class="line-graphic">
                 <div class="main-line"></div>
                 <div class="circle"></div>
+
+                <% if( didMainData.length > 0 ){ for(var i in didMainData){ %>
+                <div class="circle" id="circle-<%= didMainData[i].objectId %>"></div>
+                <%}}%>
+
+                <% if( didSubData.length > 0 ){ for(var i in didSubData){ %>
+                <div class="rect" id="rect-<%= didSubData[i].objectId %>"></div>
+                <%}}%>
             </div>
 
             <div id="main-project" class="project">
@@ -77,12 +85,11 @@
                 <!-- current work -->
                 <% if(doingMainData){
                     var timelineThumbnail = doingMainData.timelineThumbnail;
-
                     if( timelineThumbnail == "null"){
                         timelineThumbnail = "timeline-null2.jpg"
                     }
                 %>
-                <div class="currentWork work work#<%= doingMainData.objectId %>">
+                <div class="currentWork work" id="work-<%= doingMainData.objectId %>">
                     <div class="pic">
                         <img src="images/<%= timelineThumbnail %>" alt=""/>
                     </div>
@@ -110,7 +117,7 @@
                         }
                 %>
 
-                <div class="pastWork work work#<%= didMainData[i].objectId %>">
+                <div class="pastWork work" id="work-<%= didMainData[i].objectId %>">
                     <div class="pic">
                         <img src="images/<%= timelineThumbnail %>" alt=""/>
                     </div>

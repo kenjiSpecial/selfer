@@ -37,6 +37,7 @@ define([
             this.didMainData      = [];
             this.didSubData       = [];
 
+            var currentYear = moment();
             var lastOneYear = moment().subtract( 'years', 1 );
             // console.log(lastOneYear);
             // console.log(json);
@@ -88,6 +89,52 @@ define([
             this.$timeline = this.$el.find("#timeline");
             this.$timeline.css("height", 1600);
 
+            // set the work position properly.
+            var i;
+            var objectId, endDate, month, $workString, $work, topPos;
+            var $circleString, $circle, $rectString, $rect;
+
+            for( i = 0; i < this.didMainData.length; i++ ) {
+                objectId = this.didMainData[i].objectId;
+                endDate  = this.didMainData[i].endDate;
+                month    = currentYear.diff( endDate, 'months' );
+                $workString   = "#work-" + objectId;
+                $circleString = "#circle-" + objectId;
+
+                $work       = this.$el.find( $workString );
+                $circle     = this.$el.find( $circleString );
+
+                topPos   = 300 + 100 * month;
+
+                $work.css({
+                    top: topPos
+                });
+
+                $circle.css({
+                    top: (topPos -12)
+                });
+            }
+
+            for( i = 0; i < this.didSubData.length; i++ ) {
+                objectId = this.didSubData[i].objectId;
+                endDate  = this.didSubData[i].endDate;
+                month    = currentYear.diff( endDate, 'months' );
+                $workString = "#work-" + objectId;
+                $rectString = "#rect-" + objectId;
+                $work       = this.$el.find( $workString );
+                $rect       = this.$el.find( $rectString );
+                topPos   = 300 + 100 * month;
+
+                $work.css({
+                    top: topPos
+                });
+
+                $rect.css({
+                    top: (topPos -12)
+                });
+            }
+
+
             this.removeLoginHandler();
 
             // bind the method
@@ -97,7 +144,6 @@ define([
             // method on
             this.$el.on("mouseenter", ".work", this.workMouseEnterAction);
             this.$el.on("mouseleave", ".work", this.workMouseLeaveAction);
-
 
 
         },
