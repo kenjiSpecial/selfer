@@ -10,6 +10,10 @@
         display: none;
       }
 
+      &.active{
+        display: block;
+      }
+
     }
 
     /** timer **/
@@ -72,16 +76,17 @@
                   border: $BUTTON_DEF_COLOR solid 1px;
                   padding: 5px 10px;
 
-                  /*&:after{
-                    content: "";
-                    display: block;
-                    position: absolute;
-                    background: #ffff00;
-                  }*/
-
-
                   &.start-button{
                     margin-right: 12px;
+                  }
+
+                  &.invisible{
+                    opacity: 0;
+                    @include transition( opacity, 0.4s );
+                  }
+
+                  &.display-none{
+                    display: none;
                   }
 
                   &:hover{

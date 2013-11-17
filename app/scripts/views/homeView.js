@@ -6,16 +6,18 @@ define([
     'backbone',
     'moment',
     'views/loaderView',
+    'views/timerView',
     'models/appData',
     'collections/projectCollection',
     'templates'
-], function ($, _, Backbone, moment, loaderView, appData, projectCollection, JST) {
+], function ($, _, Backbone, moment, loaderView, timerView, appData, projectCollection, JST) {
     'use strict';
 
     var HomeView = Backbone.View.extend({
         template             : JST['app/scripts/templates/homeTemplate.ejs'],
         el                   : "#main-container",
         $home                : null,
+        timer                : null,
 
         workMouseEnterAction : null,
         workMouseLeaveAction : null,
@@ -24,6 +26,10 @@ define([
         doingSubData         : null,
         didMainData          : null,
         didSubData           : null,
+
+        events : {
+            "click .start-button" : "startTimerHandler"
+        } ,
 
         render: function () {
             if(!appData.get("load")){
@@ -199,6 +205,22 @@ define([
             }else if($targetSuperParent.hasClass("work-mouse-enter")){
                 $targetSuperParent.removeClass("work-mouse-enter");
             }
+        },
+
+        startTimerHandler : function(event){
+
+            var $target = $(event.target);
+
+            $target.addClass("invisible");
+
+            setTimeout(function(){
+                $target.addClass("display-none");
+            }, 5000);
+
+            timerView.timerStartAction();
+
+
+            event.preventDefault();
         }
 
     });
