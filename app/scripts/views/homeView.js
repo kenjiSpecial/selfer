@@ -39,7 +39,6 @@ define([
 
             var currentYear = moment();
             var lastOneYear = moment().subtract( 'years', 1 );
-            // console.log(lastOneYear);
             // console.log(json);
 
             for(var i in json){
@@ -78,6 +77,8 @@ define([
             this.$el.addClass("initVisible").removeClass("init");
 
             var html = this.template({
+                                        currentYear   : moment().year(),
+                                        currentMonth  : moment().month(),
                                         doingMainData : this.doingMainData,
                                         doingSubData  : this.doingSubData,
                                         didMainData   : this.didMainData,

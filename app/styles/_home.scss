@@ -159,6 +159,18 @@
             border: $BG_COLOR solid 8px;
           }
 
+          .date {
+
+            position: absolute;
+            top  : 300px;
+            width: 50px;
+            left : calc((100% - 50px)/2);
+            color: $DEFAULT_COLOR;
+            background-color: $BG_COLOR;
+            padding-top    : 8px;
+            padding-bottom : 8px;
+            font-size: 12px;
+          }
 
         }
 
