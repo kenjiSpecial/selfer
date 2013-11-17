@@ -208,14 +208,12 @@ define([
         },
 
         startTimerHandler : function(event){
-
-            var $target = $(event.target);
-
-            $target.addClass("invisible");
+            var $startButton = this.$el.find(".start-button");
+            $startButton.addClass("invisible");
 
             setTimeout(function(){
-                $target.addClass("display-none");
-            }, 5000);
+                $startButton.addClass("display-none");
+            }, 500);
 
             timerView.timerStartAction();
 
