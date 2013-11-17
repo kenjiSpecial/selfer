@@ -219,6 +219,7 @@ define([
 
             timerView.timerStartAction();
 
+            this.$timeline.addClass("timer-active");
 
             event.preventDefault();
         }

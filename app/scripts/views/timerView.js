@@ -11,13 +11,9 @@ define([
         el         : "#main-container",
         $timer     : null,
 
-        initialize : function(){
-            this.$timer = this.$el.find("#timer");
-        },
-
         timerStartAction : function(){
-            var $timer = this.$el.find("#timer");
-            $timer.removeClass("inactive").addClass("active");
+            this.$timer = this.$el.find("#timer");
+            this.$timer.removeClass("inactive").addClass("active");
         }
 
     });

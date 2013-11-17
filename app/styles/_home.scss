@@ -6,19 +6,87 @@
     /** timer **/
 
     div#timer{
+      margin-bottom: 30px;
+
       &.inactive{
-        display: none;
+        opacity: 0;
+        @include create-transform( $perspective: 1000, $rotate-x: -90deg, $origin-y: 0 );
+        @include transition(all 0.3s);
       }
 
       &.active{
-        display: block;
+        opacity: 1;
+        @include create-transform( $perspective: 1000, $rotate-x: 0deg, $origin-y: 0 );
+        @include transition(all 1s);
       }
 
+      &.display-none{
+        display: none;
+      }
+
+      padding: 10px;
+      background: $WORK_BG_COLOR;
+
+      p.date{
+        color: $DEFAULT_COLOR;
+        font-size: 11px;
+        text-align: center;
+        margin-bottom: 5px;
+      }
+
+      p.title{
+        font-size: 14px;
+        color: $DEFAULT_COLOR;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      p.timer{
+        text-align: center;
+        color: $DEFAULT_COLOR;
+
+        .hour{
+          font-size: 24px;
+          margin-right: 10px;
+        }
+
+        .second{
+          font-size: 18px;
+        }
+
+        margin: 20px;
+      }
+
+      .timer-button{
+
+        .stop-bt{
+          display: block;
+
+          width: 100px;
+
+          margin: auto;
+          padding: 8px 12px;
+          text-align: center;
+
+          text-decoration: none;
+          font-size: 14px;
+          color: $DEFAULT_COLOR;
+          border: 1px solid $BUTTON_DEF_COLOR;
+
+        }
+      }
     }
 
     /** timer **/
 
     #timeline{
+      @include transition(all 0.6s 0.2s);
+      margin-top: -170px;
+
+      &.timer-active {
+        margin-top: 0;
+      }
+
 
       .wrapper{
         height: 100%;
