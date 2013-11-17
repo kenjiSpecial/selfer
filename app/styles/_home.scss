@@ -49,13 +49,13 @@
               @include create-transform( $perspective: 1000, $rotate-x: -90deg, $origin-y: 0 );
               @include transition(all 0.3s);
 
-              padding: 0 10px 10px;
+              padding: 5px 10px 10px;
               background: $WORK_BG_COLOR;
 
               .title{
                 font-size: 18px;
                 color: $DEFAULT_COLOR;
-                margin-bottom: 15px;
+                margin-bottom: 5px;
               }
 
               .button-list{
