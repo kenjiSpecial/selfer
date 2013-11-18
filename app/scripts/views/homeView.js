@@ -208,6 +208,7 @@ define([
         },
 
         startTimerHandler : function(event){
+
             var $startButton = this.$el.find(".start-button");
             $startButton.addClass("invisible");
 
@@ -215,7 +216,9 @@ define([
                 $startButton.addClass("display-none");
             }, 500);
 
-            timerView.timerStartAction();
+            var name = $(event.target).parent().parent().find(".title").html();
+
+            timerView.timerStartAction($(event.target).attr("href"), name);
 
             this.$timeline.addClass("timer-active");
 
