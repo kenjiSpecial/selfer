@@ -73,7 +73,7 @@ define([
         },
 
         loginAction : function(){
-            currentViewState = "main";
+            currentViewState = "sub";
             currentView = loadingView;
             loginView.render();
         },

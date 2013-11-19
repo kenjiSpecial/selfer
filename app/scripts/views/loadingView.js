@@ -29,6 +29,8 @@ define([
         count              : 0,
 
         initialize : function(){
+            this.$el.removeClass("invisible").addClass("visible");
+
             myEvent.on( myEvent.PARSE_LOAD, _.bind(this.parseLoadDone, this) );
         },
 

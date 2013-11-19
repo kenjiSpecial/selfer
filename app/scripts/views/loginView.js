@@ -30,12 +30,12 @@ define([
             this.$el.html(html);
 
             var windowHeight = window.innerHeight;
-            var $mainContainer = $("#main-container")
+            var $mainContainer = $("#main-container");
             var marginTop = ( windowHeight - $mainContainer.height() )/2 - 40;
 
             this.$el.find("#login").css({"marginTop": marginTop});
 
-            if(this.$el.hasClass("init")) this.$el.removeClass("init");
+            if(this.$el.hasClass("initVisible")) this.$el.removeClass("initVisible").addClass("init");
 
             this.windowResizeHandler = _.bind(this.resizeHandler, this);
 
@@ -62,7 +62,7 @@ define([
                         $(window).off( "resize", this.windowResizeHandler);
 
                         $("#loader").removeClass("login-start")
-                        self.$el.addClass("init");
+                        self.$el.addClass("initVisible");
 
 
 
@@ -70,8 +70,7 @@ define([
                             Events.trigger("loginDone");
                         }, 1000);
 
-                        $nameForm.val("");
-                        $pwdForm.val("");
+
 
                         // start to load the data.
                     },

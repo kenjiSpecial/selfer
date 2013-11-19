@@ -8,6 +8,7 @@
     @include transition(all .4s);
   }
 
+
   &.visible{
     opacity: 1;
     @include transition(all .4s);

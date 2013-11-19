@@ -30,6 +30,16 @@ Animation
 #loader {
   display: none;
 
+  &.invisible{
+    opacity: 0;
+
+  }
+
+  &.visible{
+    opacity: 1;
+    @include transition(opacity 1s);
+  }
+
   &.load {
     display: block;
   }
