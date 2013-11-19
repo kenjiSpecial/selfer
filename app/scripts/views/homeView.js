@@ -28,7 +28,8 @@ define([
         didSubData           : null,
 
         events : {
-            "click .start-button" : "startTimerHandler"
+            "click .start-button" : "startTimerHandler",
+            "click .stop-bt"  : "stopTimerHandler"
         } ,
 
         render: function () {
@@ -212,6 +213,9 @@ define([
             var $startButton = this.$el.find(".start-button");
             $startButton.addClass("invisible");
 
+            var $stopButton = this.$el.find(".stop-bt");
+            $stopButton.removeClass("invisible").removeClass("display-none");
+
             setTimeout(function(){
                 $startButton.addClass("display-none");
             }, 500);
@@ -222,7 +226,21 @@ define([
 
             this.$timeline.addClass("timer-active");
 
+
+
             event.preventDefault();
+        },
+
+        stopTimerHandler : function(event){
+            event.preventDefault();
+            var $target = $(event.target);
+
+            $target.addClass("invisible");
+
+            setTimeout(function(){
+                //$target.addClass("display-none");
+            }, 300)
+
         }
 
     });
