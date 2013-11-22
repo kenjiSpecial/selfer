@@ -27,12 +27,17 @@ define([
         didMainData          : null,
         didSubData           : null,
 
+        currentTimerObjectId    : null,
+        currentTimerObjectModel : null,
+        currentTimerObjectJson  : null,
+
         events : {
             "click .start-button" : "startTimerHandler",
             "click .stop-bt"  : "stopTimerHandler"
         } ,
 
         render: function () {
+
             if(!appData.get("load")){
                 return;
             }
@@ -210,11 +215,15 @@ define([
 
         startTimerHandler : function(event){
 
+            this.currentTimerObjectId    = $(event.target).attr("href");
+            this.currentTimerObjectModel = projectCollection.get(this.currentTimerObjectId);
+            this.currentTimerObjectJson  = this.currentTimerObjectModel.toJSON();
+
             var $startButton = this.$el.find(".start-button");
             $startButton.addClass("invisible");
 
             var $stopButton = this.$el.find(".stop-bt");
-            $stopButton.removeClass("invisible").removeClass("display-none");
+            $stopButton.removeClass("display-none");
 
             setTimeout(function(){
                 $startButton.addClass("display-none");
@@ -226,20 +235,26 @@ define([
 
             this.$timeline.addClass("timer-active");
 
-
+            this.stopStatus = false;
 
             event.preventDefault();
         },
 
         stopTimerHandler : function(event){
             event.preventDefault();
-            var $target = $(event.target);
 
-            $target.addClass("invisible");
+            if(this.stopStatus) return;
 
+            var $stopButton = this.$el.find(".stop-bt");
+            $stopButton.addClass('saving');
+
+            var self = this;
+            this.currentTimerObjectModel.addUnique("did", {date: moment().format("MM/DD/YYYY"), hours: 10});
+            this.currentTimerObjectModel.save();
+            /*
             setTimeout(function(){
-                //$target.addClass("display-none");
-            }, 300)
+                self.$el.find(".timer-button").addClass("timer-stop");
+            }, 500);*/
 
         }
 

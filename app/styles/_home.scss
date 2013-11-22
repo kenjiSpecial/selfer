@@ -59,11 +59,27 @@
       }
 
       .timer-button{
+        overflow: hidden;
+        height: 32px;
+
+        &.timer-stop{
+          .timer-data-result{
+            margin-top: 0;
+            @include transition(all 0.5s 0.3s);
+          }
+        }
+
+        .timer-data-result{
+          height: 32px;
+          margin-top: -32px;
+        }
+
 
         .stop-bt{
+          overflow: hidden;
           display: block;
-
           width: 100px;
+          height: 32px;
 
           margin: auto;
           padding: 8px 12px;
@@ -74,6 +90,27 @@
           color: $DEFAULT_COLOR;
           border: 1px solid $BUTTON_DEF_COLOR;
           @include transition(all 0.3s);
+
+          &.saving{
+            cursor: default;
+            background: $DEFAULT_HOVER_BG_COLOR;
+            border-color: $DEFAULT_HOVER_BG_COLOR;
+
+            .text-stop{
+              margin-top: 0;
+            }
+          }
+
+          .text-save{
+            height: 16px;
+          }
+
+          .text-stop{
+            margin-top: -24px;
+            height: 16px;
+            margin-bottom: 8px;
+            @include transition(all 0.3s);
+          }
 
           &:hover{
             background: $DEFAULT_HOVER_BG_COLOR;
