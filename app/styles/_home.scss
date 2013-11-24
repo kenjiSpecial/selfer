@@ -37,14 +37,14 @@
       p.title{
         font-size: 18px;
         color: $DEFAULT_COLOR;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         text-align: center;
       }
 
       p.timer{
         text-align: center;
         color: $DEFAULT_COLOR;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
 
         .hour{
           font-size: 24px;
@@ -64,7 +64,7 @@
 
         &.timer-stop{
           .timer-data-result{
-            margin-top: 0;
+            margin-top: 4px;
             @include transition(all 0.5s 0.3s);
           }
         }
@@ -72,6 +72,23 @@
         .timer-data-result{
           height: 32px;
           margin-top: -32px;
+
+          font-size: 20px;
+          color: $DEFAULT_COLOR;
+
+          text-align: center;
+
+          span.capt-text{
+            margin-right: 5px;
+          }
+
+          span.result-second {
+            font-size: 14px;
+            margin-left: 5px;
+            margin-right: 15px;
+
+            &:last-child { margin-right: 0; }
+          }
         }
 
 
@@ -134,7 +151,7 @@
 
     #timeline{
       @include transition(all 0.6s);
-      margin-top: -170px;
+      margin-top: -155px;
 
       &.timer-active {
         margin-top: 0;

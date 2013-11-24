@@ -4,8 +4,11 @@ define([
     var event = _.extend({}, Backbone.Events);
 
     _.extend(event, {
-        PARSE_LOAD  : ".parse_load_done",
-        TIMER_START : ".timer-start"
+        LOGIN_DONE     : ".loginDone",
+        LOADING_FINISH : ".loadingFinish",
+        PARSE_LOAD     : ".parse_load_done",
+        TIMER_START    : ".timer-start",
+        TIMER_RESET    : ".timer-reset"
     });
 
     return event;

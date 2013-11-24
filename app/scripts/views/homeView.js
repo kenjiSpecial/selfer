@@ -5,12 +5,13 @@ define([
     'underscore',
     'backbone',
     'moment',
+    'helpers/events',
     'views/loaderView',
     'views/timerView',
     'models/appData',
     'collections/projectCollection',
     'templates'
-], function ($, _, Backbone, moment, loaderView, timerView, appData, projectCollection, JST) {
+], function ($, _, Backbone, moment, myEvent, loaderView, timerView, appData, projectCollection, JST) {
     'use strict';
 
     var HomeView = Backbone.View.extend({
@@ -31,10 +32,19 @@ define([
         currentTimerObjectModel : null,
         currentTimerObjectJson  : null,
 
+        timerResetHandlerAction : null,
+
         events : {
             "click .start-button" : "startTimerHandler",
-            "click .stop-bt"  : "stopTimerHandler"
+            //"click .stop-bt"  : "stopTimerHandler"
         } ,
+
+        initialize : function(){
+
+            this.timerResetHandlerAction = _.bind( this.timerResetHandler, this );
+            myEvent.on(myEvent.TIMER_RESET, this.timerResetHandlerAction);
+
+        },
 
         render: function () {
 
@@ -213,17 +223,14 @@ define([
             }
         },
 
-        startTimerHandler : function(event){
+        startTimerHandler : function( event ){
+            event.preventDefault();
 
-            this.currentTimerObjectId    = $(event.target).attr("href");
-            this.currentTimerObjectModel = projectCollection.get(this.currentTimerObjectId);
-            this.currentTimerObjectJson  = this.currentTimerObjectModel.toJSON();
+            var currentTimerObjectId    = $(event.target).attr("href");
 
             var $startButton = this.$el.find(".start-button");
             $startButton.addClass("invisible");
 
-            var $stopButton = this.$el.find(".stop-bt");
-            $stopButton.removeClass("display-none");
 
             setTimeout(function(){
                 $startButton.addClass("display-none");
@@ -231,32 +238,21 @@ define([
 
             var name = $(event.target).parent().parent().find(".title").html();
 
-            timerView.timerStartAction($(event.target).attr("href"), name);
+            timerView.timerStartAction(currentTimerObjectId, name);
 
             this.$timeline.addClass("timer-active");
 
-            this.stopStatus = false;
-
-            event.preventDefault();
         },
 
-        stopTimerHandler : function(event){
-            event.preventDefault();
+        timerResetHandler : function(){
+            console.log("timerResetHandlerAction");
 
-            if(this.stopStatus) return;
+            var $startButton = this.$el.find(".start-button");
+            $startButton.removeClass("invisible").removeClass("display-none").addClass("visible");
 
-            var $stopButton = this.$el.find(".stop-bt");
-            $stopButton.addClass('saving');
-
-            var self = this;
-            this.currentTimerObjectModel.addUnique("did", {date: moment().format("MM/DD/YYYY"), hours: 10});
-            this.currentTimerObjectModel.save();
-            /*
-            setTimeout(function(){
-                self.$el.find(".timer-button").addClass("timer-stop");
-            }, 500);*/
-
+            this.$timeline.removeClass("timer-active");
         }
+
 
     });
 

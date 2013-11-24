@@ -10,7 +10,7 @@ define([
     'helpers/events',
 
     'templates'
-], function ($, _, Backbone, loaderView, Events, JST) {
+], function ($, _, Backbone, loaderView, myEvent, JST) {
     'use strict';
 
 
@@ -67,7 +67,7 @@ define([
 
 
                         setTimeout(function(){
-                            Events.trigger("loginDone");
+                            myEvent.trigger(myEvent.LOGIN_DONE);
                         }, 1000);
 
 

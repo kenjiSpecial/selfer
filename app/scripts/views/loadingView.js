@@ -128,7 +128,7 @@ define([
 
             this.$el.find("#loading-text").removeClass("visible").addClass("invisible");
             appData.set("load", true);
-            myEvent.trigger("loadingFinish");
+            myEvent.trigger(myEvent.LOADING_FINISH);
         }
 
 
