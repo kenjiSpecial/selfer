@@ -176,6 +176,7 @@
             &.work-mouse-enter{
               .description {
                 @include create-transform( $perspective: 1000, $rotate-x: 0, $origin-y: 0 );
+                @include transition(all 0.8s);
               }
             }
 

@@ -173,7 +173,7 @@ define([
                 self.$el.find(".stop-bt").removeClass('saving');
                 self.$el.find(".timer-button").removeClass("timer-stop");
 
-            }, 10000);
+            }, 6000);
         },
 
         parseTime : function(second){

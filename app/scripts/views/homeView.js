@@ -8,10 +8,11 @@ define([
     'helpers/events',
     'views/loaderView',
     'views/timerView',
+    'views/detailView',
     'models/appData',
     'collections/projectCollection',
     'templates'
-], function ($, _, Backbone, moment, myEvent, loaderView, timerView, appData, projectCollection, JST) {
+], function ($, _, Backbone, moment, myEvent, loaderView, timerView, detailView, appData, projectCollection, JST) {
     'use strict';
 
     var HomeView = Backbone.View.extend({

@@ -1,0 +1,189 @@
+#detail{
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  background: rgba(50, 50, 50, .6);
+
+  width: 100%;
+
+  .posAbsolute {
+    position: absolute;
+  }
+
+  .posFix{
+    position: fixed;
+  }
+
+  .invisible{
+    display: none;
+  }
+
+  .visible{
+    display: block;
+  }
+
+  .container{
+    position: absolute;
+    width: $CONTAINER_WIDTH;
+    height: $DETAIL_HEIGHT;
+
+    left : 50%;
+
+    margin-left: -0.5 * $CONTAINER_WIDTH;
+    margin-top: -0.5 * $DETAIL_HEIGHT;
+
+
+    .header{
+      background: $DETAIL_BG_COLOR;
+
+
+      .header-wrapper{
+        padding: 20px;
+        overflow: hidden;
+        .header-thumbnail{
+          float: left;
+          margin-right: 20px;
+
+          width: 120px;
+          height: 70px;
+
+          img{
+            width: 120px;
+            height: 70px;
+          }
+        }
+
+        div.header-text{
+          float: left;
+          width: 680px;
+          color: $DEFAULT_COLOR;
+
+          h1{
+            font-weight: 400;
+            font-size: 20px;
+            margin-bottom: 10px;
+          }
+
+          p{
+            line-height: 1.5em;
+            font-size: 11px;
+          }
+        }
+
+      }
+
+    }
+
+    .menu {
+      border-top: 1px solid #CCCCCB;
+      border-bottom: 1px solid #CCCCCB;
+      height: $DETAIL_MENU_HEIGHT;
+      background: $DETAIL_BG_COLOR;
+
+      ul{
+        overflow: hidden;
+        li{
+          font-size: 14px;
+          font-weight: 400;
+          color: $NAV_BG_COLOR;
+
+          cursor: pointer;
+          width: $DETAIL_MENU_WIDTH;
+          height: ($DETAIL_MENU_HEIGHT - 1px);
+
+          float: left;
+          text-align: center;
+          text-decoration: none;
+          padding-top: 8px;
+          border-right: 1px solid #CCCCCB;
+
+          @include transition(background 0.6s);
+
+          &.select{
+            //height: $DETAIL_MENU_HEIGHT;
+            background: $DETAIL_SELECT_BG_COLOR;
+            border-bottom: $DETAIL_SELECT_BG_COLOR 1px solid;
+
+          }
+
+        }
+      }
+    }
+
+    .main-container{
+      overflow: hidden;
+      width  : $CONTAINER_WIDTH;
+      height : $DETAIL_CONTENT_HEIGHT;
+
+
+      @include perspective(800px);
+      @include perspective-origin( ($CONTAINER_WIDTH/2) ($DETAIL_CONTENT_HEIGHT/2) );
+
+      .wrapper{
+
+        position: relative;
+        width  : $CONTAINER_WIDTH;
+        height : $DETAIL_CONTENT_HEIGHT;
+
+        @include transition(all 0.6s);
+        @include transform-style(preserve-3d);
+
+        &.select0{
+          @include create-transform( $rotate-y: 0deg, $origin-z: ($CONTAINER_WIDTH * -0.5) );
+        }
+
+        &.select1{
+          @include create-transform( $rotate-y: -90deg, $origin-z: ($CONTAINER_WIDTH * -0.5) );
+        }
+
+        &.select2{
+          @include create-transform( $rotate-y: -180deg, $origin-z: ($CONTAINER_WIDTH * -0.5) );
+        }
+
+
+        .content{
+          position: absolute;
+
+          width  : $CONTAINER_WIDTH;
+          height : $DETAIL_CONTENT_HEIGHT;
+
+          &:nth-child(1) {
+            //@include create-transform( $perspective: 1000, $origin-x: 0px, $origin-z: 0, $origin-y: ($DETAIL_CONTENT_HEIGHT/2), $trans-z: 0 );
+            background: $DETAIL_SELECT_BG_COLOR;
+            //opacity: .3;
+            //display: none;
+          }
+
+          &:nth-child(2) {
+            background: $DETAIL_SELECT_BG_COLOR;
+            //@include create-transform( $perspective: 1000, $rotate-y: 85deg, $origin-x: $CONTAINER_WIDTH/2, $origin-z: $CONTAINER_WIDTH/2, $trans-x: $CONTAINER_WIDTH );
+
+            @include create-transform( $rotate-y: 90deg, $trans-z: ($CONTAINER_WIDTH/2), $trans-x: ($CONTAINER_WIDTH/2));
+            @include transform-origin( top right );
+            //opacity: .3;
+
+          }
+
+          &:nth-child(3) {
+            background: $DETAIL_SELECT_BG_COLOR;
+            @include create-transform( $trans-z: (-1 * $CONTAINER_WIDTH) );
+            //opacity: .3;
+            //@include transform-origin( top right );
+            //display: none;
+          }
+        }
+      }
+    }
+
+  }
+
+  &.test{
+    height: 720px;
+
+    .container{
+      top: 360px;
+    }
+  }
+
+}
