@@ -1,0 +1,14 @@
+@mixin common-button($font-size, $padding-left, $padding-top, $default-color){
+  @include transition(all 0.3s);
+  font-size: $font-size;
+  color: $default-color;
+  text-decoration: none;
+  border: $default-color solid 1px;
+  padding: $padding-left $padding-top;
+
+  &:hover{
+    background: $default-color;
+    border-color: $default-color;
+  }
+
+}

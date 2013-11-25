@@ -98,7 +98,7 @@
           padding-top: 8px;
           border-right: 1px solid #CCCCCB;
 
-          @include transition(background 0.6s);
+          @include transition(background 0.6s 0.4s);
 
           &.select{
             //height: $DETAIL_MENU_HEIGHT;
@@ -112,22 +112,24 @@
     }
 
     .main-container{
-      overflow: hidden;
-      width  : $CONTAINER_WIDTH;
-      height : $DETAIL_CONTENT_HEIGHT;
 
-
-      @include perspective(800px);
+      @include perspective(1000px);
       @include perspective-origin( ($CONTAINER_WIDTH/2) ($DETAIL_CONTENT_HEIGHT/2) );
 
       .wrapper{
 
         position: relative;
-        width  : $CONTAINER_WIDTH;
-        height : $DETAIL_CONTENT_HEIGHT;
 
-        @include transition(all 0.6s);
+
         @include transform-style(preserve-3d);
+
+        &.step1{
+          @include transition(all .6s);
+        }
+
+        &.step2{
+          @include transition(all 1s);
+        }
 
         &.select0{
           @include create-transform( $rotate-y: 0deg, $origin-z: ($CONTAINER_WIDTH * -0.5) );
@@ -149,30 +151,91 @@
           height : $DETAIL_CONTENT_HEIGHT;
 
           &:nth-child(1) {
-            //@include create-transform( $perspective: 1000, $origin-x: 0px, $origin-z: 0, $origin-y: ($DETAIL_CONTENT_HEIGHT/2), $trans-z: 0 );
             background: $DETAIL_SELECT_BG_COLOR;
-            //opacity: .3;
-            //display: none;
           }
 
           &:nth-child(2) {
             background: $DETAIL_SELECT_BG_COLOR;
-            //@include create-transform( $perspective: 1000, $rotate-y: 85deg, $origin-x: $CONTAINER_WIDTH/2, $origin-z: $CONTAINER_WIDTH/2, $trans-x: $CONTAINER_WIDTH );
-
             @include create-transform( $rotate-y: 90deg, $trans-z: ($CONTAINER_WIDTH/2), $trans-x: ($CONTAINER_WIDTH/2));
-            @include transform-origin( top right );
-            //opacity: .3;
 
           }
 
           &:nth-child(3) {
             background: $DETAIL_SELECT_BG_COLOR;
             @include create-transform( $trans-z: (-1 * $CONTAINER_WIDTH) );
-            //opacity: .3;
-            //@include transform-origin( top right );
-            //display: none;
+
           }
         }
+
+        #detail-overview {
+          #wrapper-overview{
+            margin: 20px;
+            height: ($DETAIL_CONTENT_HEIGHT - 40px);
+            overflow: hidden;
+
+            .image-wrapper{
+              float: left;
+              background: #ffff00;
+              width: 515px;
+              height: ($DETAIL_CONTENT_HEIGHT - 40px);
+              margin-right: 20px;
+
+
+              .image-gallery{
+                position: relative;
+                width: ($CONTAINER_WIDTH - 575px);
+                height: ($DETAIL_CONTENT_HEIGHT - 40px);
+
+                img{
+                  position: absolute;
+                  width: 515px;
+                  height: ($DETAIL_CONTENT_HEIGHT - 40px);
+                }
+              }
+
+            }
+
+            .text-wrapper{
+              float: left;
+              overflow: auto;
+
+              width: ($CONTAINER_WIDTH - 575px);
+              height: ($DETAIL_CONTENT_HEIGHT - 90px);
+              color: $DETAIL_DEFAULT_COLOR;
+              margin-bottom: 20px;
+              p{
+                font-size: 11px;
+                line-height: 1.5em;
+                margin-bottom: 5px;
+              }
+
+              p.schedule{
+                margin-bottom: 20px;
+              }
+
+              p.log{
+                margin-bottom: 20px;
+              }
+
+              .detail{
+                margin-bottom: 20px;
+              }
+
+            }
+
+            p.edit{
+              a{
+                float: right;
+                @include common-button(12px, 5px, 10px, $DETAIL_DEFAULT_COLOR);
+                &:hover{
+                  color: $DEFAULT_HOVER_BG_COLOR;
+                }
+              }
+            }
+          }
+        }
+
+
       }
     }
 
@@ -184,6 +247,9 @@
     .container{
       top: 360px;
     }
+  }
+
+  .text-wrapper{
   }
 
 }

@@ -12,6 +12,7 @@ define([
         el : "#detail",
         currentSelectNumber : 0,
         template: JST['app/scripts/templates/application.ejs'],
+        addStepClass : null,
 
 
         events : {
@@ -27,13 +28,13 @@ define([
         },
 
         changeViewAction : function(event){
-            var prevNumber;
-            prevNumber = this.currentSelectNumber;
-
-            this.$el.find("li").eq(this.currentSelectNumber).removeClass("select");
-
+            var prevNumber = this.currentSelectNumber;
             this.currentSelectNumber = this.$el.find("li").index(event.target);
 
+            var dx = Math.abs(prevNumber - this.currentSelectNumber);
+            if(dx == 0) return;
+
+            this.$el.find("li").eq(prevNumber).removeClass("select");
             this.$el.find("li").eq(this.currentSelectNumber).addClass("select");
 
             var prevClass, curClass
@@ -50,7 +51,25 @@ define([
                 case 2: curClass = "select2"; break; break;
             }
 
-            this.$el.find(".wrapper").removeClass(prevClass).addClass(curClass);
+            var prevStepClass = this.addStepClass;
+
+            if(dx == 1){
+                this.addStepClass = "step1";
+            }else if(dx == 2){
+                this.addStepClass = "step2";
+            }
+
+            var $wrapper = this.$el.find(".wrapper");
+
+            if(prevStepClass){
+                $wrapper.removeClass(prevStepClass).addClass(this.addStepClass);
+            }else{
+                $wrapper.addClass(this.addStepClass);
+            }
+
+
+
+            $wrapper.removeClass(prevClass).addClass(curClass);
         }
 
     });
