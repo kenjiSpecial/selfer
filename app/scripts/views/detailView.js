@@ -16,15 +16,17 @@ define([
 
 
         events : {
-            "click li" : "changeViewAction"
+            "click li.detail-nav" : "changeViewAction"
         },
 
         initialize : function(){
-
         },
 
         render : function(){
+            this.$el.removeClass("not-active");
 
+            var html = this.template();
+            this.$el.html(html);
         },
 
         changeViewAction : function(event){
