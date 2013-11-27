@@ -36,7 +36,8 @@ define([
         timerResetHandlerAction : null,
 
         events : {
-            "click .start-button" : "startTimerHandler",
+            "click .detail-button" : "detailViewHandler",
+            "click .start-button" : "startTimerHandler"
             //"click .stop-bt"  : "stopTimerHandler"
         } ,
 
@@ -246,12 +247,17 @@ define([
         },
 
         timerResetHandler : function(){
-            console.log("timerResetHandlerAction");
 
             var $startButton = this.$el.find(".start-button");
             $startButton.removeClass("invisible").removeClass("display-none").addClass("visible");
 
             this.$timeline.removeClass("timer-active");
+        },
+
+        detailViewHandler : function( event ){
+            detailView.render();
+
+            event.preventDefault();
         }
 
 

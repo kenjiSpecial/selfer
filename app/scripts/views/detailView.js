@@ -4,14 +4,15 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'templates'
+    'templates',
+    'tweenLite'
 ], function ($, _, Backbone, JST) {
     'use strict';
 
     var DetailView = Backbone.View.extend({
         el : "#detail",
         currentSelectNumber : 0,
-        template: JST['app/scripts/templates/application.ejs'],
+        template: JST['app/scripts/templates/detailTemplate.ejs'],
         addStepClass : null,
 
 
@@ -23,10 +24,24 @@ define([
         },
 
         render : function(){
-            this.$el.removeClass("not-active");
+            this.$el.css({
+                width: window.innerWidth,
+                height: window.innerHeight
+            });
+
+            //TweenLite.to(this.el, 1, { css: { width: window.innerWidth } } );
+
+            this.$el.removeClass("invisible").addClass("visible");
+
+            var self = this;
+            setTimeout(function(){
+                self.$el.addClass("visible-active");
+                self.$el.find("#detail-main-content").html(html);
+
+            }, 10);
 
             var html = this.template();
-            this.$el.html(html);
+
         },
 
         changeViewAction : function(event){

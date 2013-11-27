@@ -3,23 +3,21 @@
   top: 0;
   left: 0;
 
-  background: rgba(50, 50, 50, .6);
-
   width: 100%;
 
-  .posAbsolute {
+  &.posAbsolute {
     position: absolute;
   }
 
-  .posFix{
+  &.posFix{
     position: fixed;
   }
 
-  .invisible{
+  &.invisible{
     display: none;
   }
 
-  .visible{
+  &.visible{
     display: block;
   }
 
@@ -28,6 +26,7 @@
     width: $CONTAINER_WIDTH;
     height: $DETAIL_HEIGHT;
 
+    top  : 50%;
     left : 50%;
 
     margin-left: -0.5 * $CONTAINER_WIDTH;
@@ -540,9 +539,74 @@
     }
   }
 
-  &.not-active{
-    display: none;
+  .bg{
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+
+    .bg-part{
+      float: left;
+      height: 100%;
+      width: 10%;
+      opacity: 0;
+
+
+      @for $i from 1 through 5{
+
+        &:nth-child(#{6 - $i}) {
+          @include create-transform( $perspective: 1000, $rotate-y: -90deg, $origin-x: 100% );
+        }
+
+        &:nth-child(#{$i + 5}) {
+          @include create-transform( $perspective: 1000, $rotate-y: 90deg, $origin-x: 0 );
+        }
+
+
+      }
+    }
   }
+
+  #detail-main-content{
+    opacity: 0;
+  }
+
+  &.visible-active {
+    .bg{
+      .bg-part{
+        background: rgba(50, 50, 50, .6);
+        opacity: 100;
+        @include create-transform( $perspective: 1000, $rotate-y: 0 );
+
+        $sum: 0s;
+        $animation: .2s;
+        @for $i from 1 through 5{
+
+          &:nth-child(#{6 - $i}) {
+            @include transition(all $animation $sum);
+          }
+
+          &:nth-child(#{$i + 5}) {
+            @include transition(all $animation $sum);
+          }
+
+          $sum: $sum + $animation;
+          $animation: $animation * 1.3;
+        }
+
+
+
+
+      }
+    }
+
+    #detail-main-content{
+      @include transition(all 2s 1s);
+      opacity: 100;
+    }
+  }
+
+
 
   &.test{
     height: 720px;
