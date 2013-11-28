@@ -17,13 +17,16 @@ define([
 
 
         events : {
-            "click li.detail-nav" : "changeViewAction"
+            "click li.detail-nav"   : "changeViewAction",
+            "click #detail-remove"  : "removeViewAction"
         },
 
         initialize : function(){
         },
 
         render : function(){
+            $('body').addClass("fix-window");
+
             this.$el.css({
                 width: window.innerWidth,
                 height: window.innerHeight
@@ -87,6 +90,20 @@ define([
 
 
             $wrapper.removeClass(prevClass).addClass(curClass);
+        },
+
+        removeViewAction: function(event){
+            $('body').removeClass("fix-window");
+
+            this.$el.addClass("remove-active");
+
+            var self = this;
+
+            setTimeout(function(){
+                self.$el.removeClass("visible visible-active remove-active");
+                self.$el.addClass("invisible")
+            }, 2000);
+
         }
 
     });
