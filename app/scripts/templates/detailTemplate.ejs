@@ -1,14 +1,20 @@
+<% console.log(data); %>
 <div class="container">
     <div class="header">
         <div class="header-wrapper">
             <div class="header-thumbnail">
-                <img src="images/case01-gallery01.jpg" alt=""/>
+
+                <% if( !data.detailThumbnail || data.detailThumbnail == "null"){ %>
+                    <img src="images/detail-thumbnail-null.jpg" alt=""/>
+                <% }else{ %>
+                    <img src="images/<%= data.detailThumbnail %>" alt=""/>
+                <% }%>
+
             </div>
             <div class="header-text">
-                <h1>TITLE</h1>
+                <h1><%= data.name %></h1>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam diam ante, semper nec hendrerit aliquet,
-                    tristique scelerisque massa. Aenean sed purus metus. Nullam eu accumsan justo, eget mattis nibh</p>
+                <p><%= data.brief %></p>
             </div>
         </div>
 
@@ -30,29 +36,26 @@
         <div id="wrapper-overview">
             <div class="image-wrapper">
                 <div class="image-gallery">
-                    <img src="images/case01-gallery01.jpg" alt=""/>
+                    <% if( !data.detailGallery || data.detailGallery == "null"){ %>
+                    <img src="images/detail-gallery-null.jpg" alt=""/>
+                    <% }else{ %>
+                    <img src="images/<%= data.detailGallery %>" alt=""/>
+                    <% }%>
+
                 </div>
             </div>
 
             <div class="text-wrapper">
-                <p class="status">status: doing</p>
+                <p class="status">status: <%= data.status %></p>
 
-                <p class="schedule">schedule: 2013-10-12 - 2013-12-05</p>
+                <p class="schedule">schedule: <%= data.startDate %> - <%= data.endDate %></p>
 
-                <p class="schedule-hour">schedule hour: 300hr</p>
-
-                <p class="log">
-                    today: 00:20:10 / week: 01:50:30 / month: 10:10:10 / total: 100:10:10
-                </p>
+                <p class="schedule-hour">schedule hour: <%= data.hour %>hr</p>
 
                 <div class="detail">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam diam ante, semper nec hendrerit
-                        aliquet, tristique scelerisque massa. Aenean sed purus metus. Nullam eu accumsan justo, eget mattis
-                        nibh</p>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam diam ante, semper nec hendrerit
-                        aliquet, tristique scelerisque massa. Aenean sed purus metus. Nullam eu accumsan justo, eget mattis
-                        nibh</p>
+                    <p>
+                        <%= data.content %>
+                    </p>
                 </div>
 
             </div>

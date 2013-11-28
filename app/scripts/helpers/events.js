@@ -8,7 +8,8 @@ define([
         LOADING_FINISH : ".loadingFinish",
         PARSE_LOAD     : ".parse_load_done",
         TIMER_START    : ".timer-start",
-        TIMER_RESET    : ".timer-reset"
+        TIMER_RESET    : ".timer-reset",
+        RESIZE         : ".resize"
     });
 
     return event;

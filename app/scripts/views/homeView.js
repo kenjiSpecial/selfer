@@ -255,9 +255,11 @@ define([
         },
 
         detailViewHandler : function( event ){
-            detailView.render();
-
             event.preventDefault();
+
+            var currentTimerObjectId = $(event.target).attr("href");
+
+            detailView.render(currentTimerObjectId);
         }
 
 

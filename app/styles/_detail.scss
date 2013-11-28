@@ -597,8 +597,10 @@
     }
 
     #detail-main-content{
-      @include transition(all 1s 1.5s);
-      opacity: 100;
+      &.data-read{
+        @include transition(all 1s 1s);
+        opacity: 100;
+      }
     }
   }
 

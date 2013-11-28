@@ -5,8 +5,11 @@ define([
     'underscore',
     'backbone',
     'templates',
+    'collections/projectCollection',
+    'helpers/events',
+    'helpers/windowHelper',
     'tweenLite'
-], function ($, _, Backbone, JST) {
+], function ($, _, Backbone, JST, projectCollection, Events, windowHelper ) {
     'use strict';
 
     var DetailView = Backbone.View.extend({
@@ -22,15 +25,27 @@ define([
         },
 
         initialize : function(){
+            _.bindAll(
+                this,
+                'onResize',
+                'querySuccess'
+            );
         },
 
-        render : function(){
+        render : function(id){
             $('body').addClass("fix-window");
 
-            this.$el.css({
-                width: window.innerWidth,
-                height: window.innerHeight
-            });
+            this.onResize();
+            Events.on( Events.RESIZE, this.onResize);
+
+            projectCollection.query.equalTo("objectId", id);
+            projectCollection.query.first({
+                success: this.querySuccess,
+                error: function(error) {
+                    alert("Error: " + error.code + " " + error.message);
+                }
+            })
+
 
             //TweenLite.to(this.el, 1, { css: { width: window.innerWidth } } );
 
@@ -39,11 +54,22 @@ define([
             var self = this;
             setTimeout(function(){
                 self.$el.addClass("visible-active");
-                self.$el.find("#detail-main-content").html(html);
+
 
             }, 10);
 
-            var html = this.template();
+
+
+        },
+
+        querySuccess : function(data){
+            var data = data.toJSON();
+            var $detailMainContent = this.$el.find("#detail-main-content");
+
+            var html = this.template({ data: data });
+            $detailMainContent.html(html);
+
+            $detailMainContent.addClass("data-read");
 
         },
 
@@ -93,6 +119,8 @@ define([
         },
 
         removeViewAction: function(event){
+            Events.off( Events.RESIZE);
+
             $('body').removeClass("fix-window");
 
             this.$el.addClass("remove-active");
@@ -104,6 +132,13 @@ define([
                 self.$el.addClass("invisible")
             }, 2000);
 
+        },
+
+        onResize : function(){
+            this.$el.css({
+                width: windowHelper.width,
+                height: windowHelper.height
+            });
         }
 
     });
