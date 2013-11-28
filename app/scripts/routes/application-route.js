@@ -41,28 +41,28 @@ define([
         },
 
         defaultAction : function(){
-            if(currentViewState == "main") currentView.remove();
+            //if(currentViewState == "main") currentView.remove();
             currentView = homeView;
             currentViewState = "main";
             homeView.render();
         },
 
         listAction : function(){
-            if(currentViewState == "main") currentView.remove();
+            //if(currentViewState == "main") currentView.remove();
             currentView = listView;
             currentViewState = "main";
             listView.render();
         },
 
         relationshipAction : function(){
-            if(currentViewState == "main") currentView.remove();
+            //if(currentViewState == "main") currentView.remove();
             currentView = relationView;
             currentViewState = "main";
             relationView.render();
         },
 
         createAction : function(){
-            if(currentViewState == "main") currentView.remove();
+            //if(currentViewState == "main") currentView.remove();
             currentView = createView;
             currentViewState = "main";
             createView.render();
@@ -79,7 +79,7 @@ define([
         },
 
         loadingAction :function(){
-            if(currentViewState == "main") currentView.remove();
+            //if(currentViewState == "main") currentView.remove();
             currentViewState = "sub";
             currentView = loadingView;
             loadingView.render();

@@ -23,6 +23,11 @@ define([
         },
 
         initialize: function(){
+            _.bindAll(
+                this,
+                "loadDoneHandler"
+            );
+
             this.$loader = $("#loader");
 
             this.trigger     = this.el.querySelector("a.bt-menu-trigger");
@@ -68,14 +73,23 @@ define([
             this.$loader.addClass("load");
 
 
-
-
             var $activeIcon = this.$el.find(".active");
             $activeIcon.removeClass("active");
 
             $(event.target).addClass("active");
 
+            setTimeout(this.loadDoneHandler, 2000);
+
+        },
+
+        loadDoneHandler : function(){
+            this.loadingState = false;
+
+            this.$el.removeClass("loading");
+            this.$loader.removeClass("load");
+
         }
+
 
     });
 

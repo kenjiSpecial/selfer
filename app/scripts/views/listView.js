@@ -14,9 +14,9 @@ define([
 
         render   : function(){
             console.log()
-            var html = this.template();
+            //var html = this.template();
 
-            this.$el.html(html);
+            //this.$el.html(html);
         }
     });
 
