@@ -37,9 +37,12 @@ define([
         timerResetHandlerAction : null,
 
         events : {
+
             "click .detail-button" : "detailViewHandler",
-            "click .start-button" : "startTimerHandler"
-            //"click .stop-bt"  : "stopTimerHandler"
+            "click .start-button"  : "startTimerHandler",
+            "mouseenter #home-page .work"     : "workMouseEnter",
+            "mouseleave #home-page .work"     : "workMouseLeave"
+
         } ,
 
         initialize : function(){
@@ -178,14 +181,6 @@ define([
 
 
             this.removeLoginHandler();
-
-            // bind the method
-            this.workMouseEnterAction = _.bind(this.workMouseEnter, this);
-            this.workMouseLeaveAction = _.bind(this.workMouseLeave, this);
-
-            // method on
-            this.$el.on("mouseenter", ".work", this.workMouseEnterAction);
-            this.$el.on("mouseleave", ".work", this.workMouseLeaveAction);
 
 
             if(appData.get("firstRender")){

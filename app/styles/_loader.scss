@@ -29,6 +29,7 @@ Animation
 
 #loader {
   display: none;
+  z-index: 200;
 
   &.invisible{
     opacity: 0;
@@ -71,6 +72,7 @@ Animation
   }
 
   &.loading {
+    z-index: 200;
     display: block;
     .clock {
       border-color: $NAV_BG_COLOR;
@@ -127,7 +129,7 @@ Animation
   }
 
   .clock {
-    z-index: 100;
+    z-index: 200;
 
     @include transition(top 1s .5s);
 

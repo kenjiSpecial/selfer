@@ -12,6 +12,7 @@
 @import "loading";
 @import "home";
 @import "detail";
+@import "list";
 
 @import "font";
 @import "loader";
@@ -19,6 +20,8 @@
 body{
   min-height: 400px;
   font-family: 'Lato', sans-serif;
+  letter-spacing: 1px;
+  //line-height: 1.2em;
   background: $BG_COLOR;
 
   &.fix-window {

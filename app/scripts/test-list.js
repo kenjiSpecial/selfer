@@ -6,6 +6,9 @@ require.config({
         underscore: {
             exports: '_'
         },
+        isotope : {
+            deps: ['jquery']
+        },
         backbone: {
             deps: [
                 'underscore',
@@ -16,6 +19,7 @@ require.config({
     },
     paths: {
         jquery: '../bower_components/jquery/jquery',
+        isotope : '../bower_components/isotope/jquery.isotope',
         backbone: '../bower_components/backbone/backbone',
         underscore: '../bower_components/underscore/underscore',
         preloadJS : '../bower_components/PreloadJS/lib/preloadjs-0.4.0.min',

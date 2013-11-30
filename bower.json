@@ -10,7 +10,8 @@
     "requirejs-text": "~2.0.5",
     "modernizr": "~2.6.2",
     "PreloadJS": "*",
-    "momentjs": "~2.4.0"
+    "momentjs": "~2.4.0",
+    "isotope": "~1.5.25"
   },
   "devDependencies": {}
 }

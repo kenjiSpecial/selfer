@@ -1,0 +1,206 @@
+#list-page {
+  margin: auto;
+  width: $CONTAINER_WIDTH;
+
+  #list-selection {
+    width: $CONTAINER_WIDTH;
+    height: 50px;
+    background: #ffffff;
+    overflow: hidden;
+
+    margin-bottom: $LIST_PROJECT_MARGIN_BOTTOM * 2;
+
+    font-size: 14px;
+
+    .wrapper {
+      overflow: hidden;
+      margin: 14px 10px;
+      height: 22px;
+
+      p {
+        color: $DEFAULT_COLOR;
+        float: left;
+        margin-right: 12px;
+        margin-top: 3px;
+      }
+
+      ul.type {
+        margin-right: 30px;
+      }
+
+      ul {
+        float: left;
+        margin-top: 3px;
+        li {
+          margin-right: 10px;
+          float: left;
+
+          a {
+            @include transition(all 0.3s);
+            font-size: 12px;
+            color: $DEFAULT_COLOR;
+            text-decoration: none;
+            border: $DEFAULT_COLOR solid 1px;
+            padding: 2px 5px;
+
+            &:hover {
+              background: $DEFAULT_HOVER_BG_COLOR;
+              border-color: $DEFAULT_HOVER_BG_COLOR;
+            }
+
+            &.select {
+              background: $DEFAULT_HOVER_BG_COLOR;
+              border-color: $DEFAULT_HOVER_BG_COLOR;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  .project {
+    position: relative;
+    width: $CONTAINER_WIDTH;
+    height: $LIST_PROJECT_HEIGHT;
+    margin-bottom: $LIST_PROJECT_MARGIN_BOTTOM;
+    background: $LIST_PROJECT_BG_COLOR;
+
+    &.inactive {
+      div.col {
+        @include transition(opacity .6s);
+
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        &:nth-child(3) {
+          opacity: 0;
+        }
+      }
+    }
+
+    &.active {
+      div.col {
+        @include transition(opacity .6s);
+
+        &:nth-child(2) {
+          opacity: 100;
+        }
+
+        &:nth-child(3) {
+          opacity: 100;
+        }
+      }
+    }
+
+    .project-container {
+      position: relative;
+      margin: auto;
+      top: $LIST_PROJECT_TOP;
+      width: $LIST_IMAGE_WIDTH;
+      height: $LIST_IMAGE_HEIGHT;
+
+      background: #ffff00;
+
+      .project-image {
+        position: absolute;
+        width: $LIST_IMAGE_WIDTH;
+        height: $LIST_IMAGE_HEIGHT;
+        img {
+          width: $LIST_IMAGE_WIDTH;
+          height: $LIST_IMAGE_HEIGHT;
+        }
+
+        &:after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: $LIST_IMAGE_WIDTH;
+          height: $LIST_IMAGE_HEIGHT;
+          background: rgba($LIST_BG_COLOR_NUM, $LIST_BG_COLOR_NUM, $LIST_BG_COLOR_NUM, .6);
+        }
+      }
+
+      .project-content {
+        position: absolute;
+        top: 30px;
+        left: ($LIST_IMAGE_WIDTH - $LIST_CONTENT_WIDTH)/2;
+        width: $LIST_CONTENT_WIDTH;
+        height: $LIST_CONTENT_HEIGHT;
+        overflow: hidden;
+
+        .col {
+          color: #ffffff;
+          float: left;
+          width: ($LIST_CONTENT_WIDTH - 20px)/3;
+          height: $LIST_CONTENT_HEIGHT;
+
+          &:nth-child(2) {
+            p {
+              font-weight: 300;
+              font-size: 11px;
+              margin: 10px;
+              line-height: 1.4em;
+            }
+          }
+
+          p.type-status {
+            font-size: 14px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+
+            span.type {
+              @extend span.status;
+
+              margin-right: 12px;
+            }
+
+            span.status {
+
+              margin-top: 2px;
+              padding: 2px 5px 3px;
+              border: 1px solid #ffffff;
+            }
+          }
+
+          p.name {
+            font-size: 22px;
+            margin-bottom: 30px;
+          }
+
+          p.date {
+            text-align: right;
+            font-size: 12px;
+          }
+
+          div.buttons {
+            position: absolute;
+            right: 0;
+            bottom: 5px;
+
+            span.button {
+              cursor: pointer;
+
+              padding: 2px 5px 3px;
+              font-size: 14px;
+              border: 1px solid #ffffff;
+
+              @include transition(all .6s);
+
+              &:hover {
+                color: rgb($LIST_BG_COLOR_NUM, $LIST_BG_COLOR_NUM, $LIST_BG_COLOR_NUM);
+                background: #ffffff;
+              }
+            }
+          }
+
+          &:not(:last-child) {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}

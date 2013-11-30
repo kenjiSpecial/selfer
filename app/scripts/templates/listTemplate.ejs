@@ -1,6 +1,68 @@
-<h1>list view  h1</h1>
-<h2>list view  h2</h2>
-<h3>list view  h3</h3>
-<h4>list view  h4</h4>
-<h5>list view  h5</h5>
-<p>list view paragraph</p>
+<section id="list-page">
+
+    <div id="list-selection">
+        <div class="wrapper">
+            <p>Type:</p>
+            <ul class="type">
+                <li><a class="select" href="" data-filter="*">ALL</a></li>
+                <li><a href="" data-filter=".main">Main</a></li>
+                <li><a href="" data-filter=".sub">Sub</a></li>
+            </ul>
+
+            <p>Status:</p>
+
+            <ul class="status">
+                <li><a class="select" href="" data-filter="*">All</a></li>
+                <li><a href="" data-filter=".schedule">Schedule</a></li>
+                <li><a href="" data-filter=".doing">Doing</a></li>
+                <li><a href="" data-filter=".done">Done</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div id="contentWrapper" class="isotope">
+        <%for(var i = 0; i < allData.length; i++){
+            var data = allData[i];
+            var objectId = data.objectId;
+            var status = data.status;
+            var type   = data.type;
+            var name = data.name;
+            var startDate = moment(data.startDate).format("MMM YYYY");
+            var endDate = moment(data.endDate).format("MMM YYYY");
+            var content = data.content;
+
+        %>
+            <div class="project isotope-item inactive <%= status %> <%= type %>">
+                <div class="project-container">
+                    <div class="project-image"><img src="images/null-list.jpg" alt=""/></div>
+                    <div class="project-content">
+                        <div class="col">
+                            <p class="type-status">
+                                <span class="type"><%= type %></span> <span class="status"><%= status %></span>
+                            </p>
+                            <p class="name">
+                                <%= name %>
+                            </p>
+                            <p class="date">
+                                <%= startDate %> - <%= endDate %>
+                            </p>
+                        </div>
+                        <div class="col">
+                            <%= content %>
+                        </div>
+
+                        <div class="col">
+                            <div class="buttons">
+                                <span class="button" object-id = "<%= objectId %>">DETAIL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <%
+        }
+        %>
+    </div>
+
+</section>
