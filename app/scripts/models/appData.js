@@ -8,9 +8,12 @@ define([
 
     var AppDataModel = Backbone.Model.extend({
         defaults: {
-            "load" : false
+            "load"        : false,
+            "firstRender" : false
         }
     });
+
+
 
 
     return new AppDataModel();

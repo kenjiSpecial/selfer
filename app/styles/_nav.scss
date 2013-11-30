@@ -21,6 +21,7 @@
       height: 100%;
       border-width: 0px 0px 0px 90px;
       background-color: rgba($CONTENT_COVER_COLOR,$CONTENT_COVER_COLOR,$CONTENT_COVER_COLOR, 0.3);
+      //@include transition(background-color 1s);
 
       &.loading{
         @include transition(background-color 1s);
@@ -28,7 +29,7 @@
       }
 
 
-      @include transition(border-width 0.3s, background-color 0.3s);
+      @include transition(border-width 0.3s, background-color 1s);
 
       .bt-menu-trigger {
         span {

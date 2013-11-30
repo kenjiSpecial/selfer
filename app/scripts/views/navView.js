@@ -4,10 +4,10 @@ define([
     'jquery',
     'underscore',
     'backbone',
-
+    'helpers/events',
     'views/loaderView'
 
-], function ($, _, Backbone, loaderView) {
+], function ($, _, Backbone, Events, loaderView) {
     'use strict';
 
     var NavView = Backbone.View.extend({
@@ -37,6 +37,8 @@ define([
             $(overlay).addClass("bt-overlay");
             this.$el.append(overlay);
 
+            Events.on( Events.VIEW_RENDER_DONE, this.loadDoneHandler );
+
         },
 
         render       : function(){
@@ -61,6 +63,8 @@ define([
         },
 
         iconHandler : function(event) {
+            loaderView.reset();
+
             var self = this;
             if(this.loadingState){
                 event.preventDefault();
@@ -78,15 +82,15 @@ define([
 
             $(event.target).addClass("active");
 
-            setTimeout(this.loadDoneHandler, 2000);
-
         },
 
         loadDoneHandler : function(){
             this.loadingState = false;
 
+            loaderView.fadeOut();
+            //this.$loader.removeClass("load");
             this.$el.removeClass("loading");
-            this.$loader.removeClass("load");
+
 
         }
 

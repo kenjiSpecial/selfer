@@ -6,13 +6,14 @@ define([
     'backbone',
     'moment',
     'helpers/events',
+    'helpers/constants',
     'views/loaderView',
     'views/timerView',
     'views/detailView',
     'models/appData',
     'collections/projectCollection',
     'templates'
-], function ($, _, Backbone, moment, myEvent, loaderView, timerView, detailView, appData, projectCollection, JST) {
+], function ($, _, Backbone, moment, myEvent, Constants, loaderView, timerView, detailView, appData, projectCollection, JST) {
     'use strict';
 
     var HomeView = Backbone.View.extend({
@@ -42,6 +43,10 @@ define([
         } ,
 
         initialize : function(){
+            _.bindAll(
+                this,
+                'renderView'
+            );
 
             this.timerResetHandlerAction = _.bind( this.timerResetHandler, this );
             myEvent.on(myEvent.TIMER_RESET, this.timerResetHandlerAction);
@@ -53,6 +58,18 @@ define([
             if(!appData.get("load")){
                 return;
             }
+
+            if(appData.get("firstRender")){
+                setTimeout(this.renderView, Constants.VIEW_DURATION);
+            }else{
+                this.renderView();
+            }
+
+        },
+
+        renderView: function(){
+
+
             var json = projectCollection.getJson();
 
             // initialize the variables
@@ -169,6 +186,13 @@ define([
             // method on
             this.$el.on("mouseenter", ".work", this.workMouseEnterAction);
             this.$el.on("mouseleave", ".work", this.workMouseLeaveAction);
+
+
+            if(appData.get("firstRender")){
+                myEvent.trigger(myEvent.VIEW_RENDER_DONE);
+            }else{
+                appData.set("firstRender", true);
+            }
 
 
         },

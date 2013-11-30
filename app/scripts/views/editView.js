@@ -4,8 +4,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'templates'
-], function ($, _, Backbone, JST) {
+    'templates',
+    'models/appData'
+], function ( $, _, Backbone, JST, appData ) {
     'use strict';
 
     var EditView = Backbone.View.extend({
@@ -13,6 +14,11 @@ define([
         el       : "#main-container",
 
         render   : function(){
+
+            if(!appData.get("load")){
+                return;
+            }
+
             var html = this.template();
 
             this.$el.html(html);

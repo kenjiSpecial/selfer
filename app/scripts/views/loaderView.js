@@ -10,6 +10,11 @@ define([
 
     var LoaderView = Backbone.View.extend({
         el      : "#loader",
+        $clock  : null,
+
+        initialize : function(){
+            this.$clock = this.$el.find(".clock");
+        },
 
         show: function( ) {
             this.$el.addClass("load");
@@ -40,6 +45,14 @@ define([
 
             if( this.$el.hasClass("login-start") )
                 this.$el.removeClass("login-start");
+
+            if( this.$clock.hasClass("loadDone") )
+                this.$clock.removeClass("loadDone");
+
+        },
+
+        fadeOut: function(){
+            this.$clock.addClass("loadDone");
         }
 
 
