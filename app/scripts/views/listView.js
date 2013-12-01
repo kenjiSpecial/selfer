@@ -105,36 +105,33 @@ define([
         },
 
         onMouseEnterIntoProject : function(event){
-            var $target            = $(event.target);
-            var $targetParent      = $target.parent();
-            var $targetGrandParent = $targetParent.parent();
-            var $targetSuperParent = $targetGrandParent.parent();
 
-            if($target.hasClass("inactive")){
-                $target.removeClass("inactive").addClass("active");
-            }else if($targetParent.hasClass("inactive")){
-                $targetParent.removeClass("inactive").addClass("active");
-            }else if($targetGrandParent.hasClass("inactive")){
-                $targetGrandParent.removeClass("inactive").addClass("active");
-            }else if($targetSuperParent.hasClass("inactive")){
-                $targetSuperParent.removeClass("inactive").addClass("active");
+            var inactive = true;
+            var $target            = $(event.target);
+
+            while(inactive){
+                if($target.hasClass("inactive")){
+                    $target.removeClass("inactive").addClass("active");
+                    inactive = false;
+                }else{
+                    $target = $target.parent();
+                }
             }
+
         },
 
         onMouseLeaveIntoProject : function(event){
-            var $target            = $(event.target);
-            var $targetParent      = $target.parent();
-            var $targetGrandParent = $targetParent.parent();
-            var $targetSuperParent = $targetGrandParent.parent();
 
-            if($target.hasClass("active")){
-                $target.removeClass("active").addClass("inactive");
-            }else if($targetParent.hasClass("active")){
-                $targetParent.removeClass("active").addClass("inactive");
-            }else if($targetGrandParent.hasClass("active")){
-                $targetGrandParent.removeClass("active").addClass("inactive");
-            }else if($targetSuperParent.hasClass("active")){
-                $targetSuperParent.removeClass("active").addClass("inactive");
+            var active = true;
+            var $target            = $(event.target);
+
+            while(active){
+                if($target.hasClass("active")){
+                    $target.removeClass("active").addClass("inactive");
+                    active = false;
+                }else{
+                    $target = $target.parent();
+                }
             }
         }
 
