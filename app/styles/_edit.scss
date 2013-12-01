@@ -1,0 +1,213 @@
+#edit-page, #create-page {
+  margin: auto;
+  background: $EDIT_BG_COLOR;
+  width: $CONTAINER_WIDTH;
+
+  .edit-wrapper {
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: $EDIT_WRAPPER_WIDTH;
+    overflow: hidden;
+
+    .image-wrapper {
+      position: relative;
+      float: left;
+      margin-right: 30px;
+      width: $EDIT_IMAGE_WIDTH;
+      color: $DEFAULT_COLOR;
+
+      .image-nav{
+        position: absolute;
+        top: 215px;
+        left: 128px;
+
+        ul{
+          overflow: hidden;
+          li{
+            cursor: pointer;
+            float: left;
+            margin-right: 10px;
+            width: 10px;
+            height: 10px;
+
+            border-radius: 5px;
+            border: 1px solid white;
+
+            @include transition(all 0.6s);
+
+            &.selected{
+              background: #FFFFFF;
+            }
+
+            &:hover{
+              background: #CCCCCC;
+            }
+          }
+        }
+      }
+
+
+      .image-gallery-wrapper{
+        overflow: hidden;
+        width: $EDIT_IMAGE_WIDTH;
+
+        .image-gallery{
+          overflow: hidden;
+          width: ($EDIT_IMAGE_WIDTH + 30px)*4;
+          @include transition(margin-left .6s);
+
+          @for $i from 0 through 3 {
+            &.select#{$i} {
+              margin-left: ($EDIT_IMAGE_WIDTH + 30px)*$i * (-1);
+            }
+          }
+
+          .content-image{
+            float: left;
+            width: $EDIT_IMAGE_WIDTH;
+            margin-right: 30px;
+
+            h2{
+              margin-bottom: 20px;
+            }
+
+            .image{
+              width: $EDIT_IMAGE_WIDTH;
+              margin-bottom: 10px;
+              img{
+                width: $EDIT_IMAGE_WIDTH;
+                height: 200px;
+              }
+            }
+            .form-group{
+              input{
+                border-radius: none;
+                background: #FFFFFF;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .content-wrapper {
+      float: left;
+      width: $EDIT_CONTENT_WIDTH;
+
+      .element {
+        color: $DEFAULT_COLOR;
+
+        label {
+          width: $EDIT_CONTENT_WIDTH;
+          display: block;
+          margin-bottom: 10px;
+        }
+
+        input{
+          outline: none;
+          color: $DEFAULT_COLOR;
+        }
+
+        &.element-brief{
+          width: $EDIT_CONTENT_WIDTH;
+          textarea {
+            outline: none;
+            resize: none;
+            width: $EDIT_CONTENT_WIDTH;
+            height: 40px;
+          }
+        }
+
+        &.element-content{
+          width: $EDIT_CONTENT_WIDTH;
+          textarea {
+            resize: none;
+            outline: none;
+            width: $EDIT_CONTENT_WIDTH;
+            height: 90px;
+            color: $DEFAULT_COLOR;
+          }
+        }
+
+
+        input{
+          height: 25px;
+          border: $DEFAULT_COLOR solid 1px;
+          padding: 2px;
+          &#edit-start-date{
+            margin-right: 30px;
+          }
+        }
+
+        &.element-name {
+          margin-bottom: 20px;
+
+        }
+        margin-bottom: 30px;
+
+        ul.type-list{
+          overflow: hidden;
+
+          li{
+            cursor: pointer;
+
+            font-size: 12px;
+            float: left;
+            margin-right: 12px;
+            &:nth-child(3){
+              margin-right: 0;
+            }
+            border: $DEFAULT_COLOR solid 1px;
+            padding: 5px 10px;
+
+            @include transition(all .6s);
+
+            &:hover {
+              background: $DEFAULT_HOVER_BG_COLOR;
+              border-color: $DEFAULT_HOVER_BG_COLOR;
+            }
+
+            &.select {
+              background: $DEFAULT_HOVER_BG_COLOR;
+              border-color: $DEFAULT_HOVER_BG_COLOR;
+            }
+
+          }
+        }
+
+        .edit-bt{
+          cursor: pointer;
+          width: 60px;
+          text-align: center;
+
+          border: $DEFAULT_COLOR solid 1px;
+          padding: 6px 10px;
+
+          @include transition(all .6s);
+
+          &:hover {
+            background: $DEFAULT_HOVER_BG_COLOR;
+            border-color: $DEFAULT_HOVER_BG_COLOR;
+          }
+        }
+
+        .create-bt{
+          cursor: pointer;
+          width: 90px;
+          text-align: center;
+
+          border: $DEFAULT_COLOR solid 1px;
+          padding: 6px 10px;
+
+          @include transition(all .6s);
+
+          &:hover {
+            background: $DEFAULT_HOVER_BG_COLOR;
+            border-color: $DEFAULT_HOVER_BG_COLOR;
+          }
+        }
+      }
+    }
+  }
+}

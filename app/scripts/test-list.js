@@ -37,7 +37,7 @@ require([
 
     'collections/projectCollection',
 
-    'views/listView',
+    'views/createView',
 
 
     'helpers/events',

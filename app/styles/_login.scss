@@ -38,13 +38,14 @@ $FOCUS_COLOR: 220;
 
         border: 1px solid $DEFAULT_COLOR;
         border-radius: 0;
-
+        outline: none;
 
 
         -webkit-appearance: none;
 
         &:focus{
-          outline-color: rgb($FOCUS_COLOR, $FOCUS_COLOR, $FOCUS_COLOR);
+          outline: none;
+          //outline-color: rgb($FOCUS_COLOR, $FOCUS_COLOR, $FOCUS_COLOR);
         }
       }
 

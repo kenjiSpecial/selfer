@@ -5,13 +5,25 @@ define([
     'underscore',
     'backbone',
     'templates',
-    'models/appData'
-], function ( $, _, Backbone, JST, appData ) {
+
+    'models/appData',
+
+    'helpers/events',
+    'helpers/constants'
+
+], function ( $, _, Backbone, JST, appData, Events, constants ) {
     'use strict';
 
     var EditView = Backbone.View.extend({
         template : JST['app/scripts/templates/editTemplate.ejs'],
         el       : "#main-container",
+
+        initialize : function(){
+            _.bindAll(
+                this,
+                'renderView'
+            );
+        },
 
         render   : function(){
 
@@ -19,9 +31,18 @@ define([
                 return;
             }
 
-            var html = this.template();
+            this.html = this.template();
 
-            this.$el.html(html);
+            //startToRender
+            setTimeout(this.renderView, constants.VIEW_DURATION);
+        },
+
+        renderView : function(){
+            this.$el.html(this.html);
+
+            Events.trigger(Events.VIEW_RENDER_DONE);
+
+
         }
     });
 

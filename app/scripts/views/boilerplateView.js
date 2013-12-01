@@ -43,7 +43,6 @@ define([
             Events.trigger(Events.VIEW_RENDER_DONE);
 
 
-
         }
 
 

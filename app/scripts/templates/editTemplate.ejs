@@ -1,6 +1,78 @@
-<h1>edit h1</h1>
-<h2>edit h2</h2>
-<h3>edit h3</h3>
-<h4>edit h4</h4>
-<h5>edit h5</h5>
-<p>edit paragraph</p>
+<div id="edit-page">
+    <div class="edit-wrapper">
+        <div class="image-wrapper">
+            <%for(var i = 0; i < 4; i++){ %>
+
+            <div class="content-image">
+                <div class="image" id="backgroundImg<%=i%>">
+                    <img class="src" src="images/detail-gallery-null.jpg" alt=""  id="backgroundImageTag" />
+                </div>
+                <p>
+                    1200x * 400px is recommended.
+                </p>
+                <div class="form-group">
+                    <label for="backgroundInputFile" class="sr-only">File input</label>
+                    <input type="file" id="backgroundInputFile">
+                </div>
+            </div>
+            <% } %>
+
+        </div>
+
+        <div class="content-wrapper">
+
+            <div class="element element-name">
+                <div class="form-group form-name">
+                    <label for="inputName">Project Name</label>
+                    <input type="name" class="form-control" id="inputNameEdit" placeholder="Project Name">
+                </div>
+            </div>
+
+            <div class="element element-type">
+                <ul class="type-list">
+                    <li>MAIN</li>
+                    <li>SUB</li>
+                    <li>SMALL</li>
+                </ul>
+            </div>
+
+            <div class="element element-hours">
+                <div class="form-group form-name">
+                    <label for="inputHour">Hours:</label>
+                    <input type="Hours" class="form-control" id="inputHour" placeholder="Hours">
+                </div>
+            </div>
+
+
+            <div class="element element-cal">
+                <div class="form-group form-schedule">
+                    <label for="input-schedule-start" >Schedule:</label>
+                    <input type="text" id="edit-start-date" class="form-control" placeholder="ScheduleStart"/>
+                    <input type="text" id="edit-end-date" class="form-control" placeholder="SceduleEnd"/>
+                </div>
+            </div>
+
+
+            <div class="element element-brief">
+                <div class="form-group form-name">
+                    <label for="inputBrief">Breif:</label>
+                    <textarea class="form-control" elements="2" id="edit-input-brief"></textarea>
+                </div>
+            </div>
+
+
+            <div class="element element-content">
+                <div class="form-group form-name">
+                    <label for="inputfContent">Detail:</label>
+                    <textarea class="form-control" elements="6" id="edit-input-content"></textarea>
+                </div>
+            </div>
+
+            <div class="element edit-bt">
+                <div class="edit-bt">EDIT</div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
